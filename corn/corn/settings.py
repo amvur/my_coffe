@@ -15,6 +15,7 @@ from pathlib import Path
 from django.contrib.sessions.backends import db
 from django.urls import reverse_lazy
 import psycopg2
+
 print(psycopg2.__file__)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,7 +47,8 @@ INSTALLED_APPS = [
     'myauth.apps.MyauthConfig',
     'all_orders.apps.AllOrdersConfig',
     'ak.apps.AkConfig',
-
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +59,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # Angular dev-сервер
 ]
 
 ROOT_URLCONF = 'corn.urls'
@@ -129,8 +136,6 @@ USE_TZ = True
 
 USE_I18N = True
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 # CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'https://buhobed.ru']
@@ -184,3 +189,4 @@ LOGGING = {
         },
     },
 }
+AUTH_USER_MODEL = 'ak.ConfigAk'
