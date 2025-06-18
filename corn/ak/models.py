@@ -1,9 +1,10 @@
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 # Create your models here.
-class Ak(models.Model):
+class Ak(AbstractUser):
     VIEW = [
         ('legal', 'Юрид/лицо'),
         ('IP', 'ИП'),
@@ -23,7 +24,7 @@ class Ak(models.Model):
             )
         ]
     )
-    kPP = models.IntegerField(verbose_name='КПП', blank=True)
+    kPP = models.IntegerField(verbose_name='КПП', blank=True,null=True)
     Address = models.CharField(max_length=150, blank=True, verbose_name="Адрес")
     email = models.EmailField(verbose_name='mail')
     director = models.CharField(verbose_name='ФИО', blank=True, max_length=50)

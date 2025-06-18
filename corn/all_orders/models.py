@@ -2,6 +2,8 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.utils import timezone
 from counterparties.models import Counterparties
+from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class ExpenseOrder(models.Model):
@@ -22,13 +24,15 @@ class ExpenseOrder(models.Model):
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
     updated_at = models.DateTimeField('Дата обновления', auto_now=True)
     created_by = models.ForeignKey(
-        'auth.User',
-        on_delete=models.PROTECT,
+
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
         related_name='created_expense_orders',
         verbose_name='Кем создан'
     )
     approved_by = models.ForeignKey(
-        'auth.User',
+
+        settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
         related_name='approved_expense_orders',
         verbose_name='Кем утвержден',
