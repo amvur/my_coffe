@@ -67,6 +67,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ROOT_URLCONF = 'corn.urls'
+AUTH_USER_MODEL = 'ak.Ak'
+
 
 TEMPLATES = [
     {
@@ -189,4 +191,3 @@ LOGGING = {
         },
     },
 }
-AUTH_USER_MODEL = 'ak.ConfigAk'

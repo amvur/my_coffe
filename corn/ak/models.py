@@ -24,7 +24,7 @@ class Ak(AbstractUser):
             )
         ]
     )
-    kPP = models.IntegerField(verbose_name='КПП', blank=True)
+    kPP = models.IntegerField(verbose_name='КПП', blank=True,null=True)
     Address = models.CharField(max_length=150, blank=True, verbose_name="Адрес")
     email = models.EmailField(verbose_name='mail')
     director = models.CharField(verbose_name='ФИО', blank=True, max_length=50)
